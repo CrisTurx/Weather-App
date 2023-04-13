@@ -1,0 +1,77 @@
+<div class="search">
+  <form #form="ngForm" (submit)="onSubmit()" >
+    <input type="text"
+    placeholder="Busca por el mundo"
+    name="city"
+    [(ngModel)]="cityName">
+  </form>
+</div>
+
+
+
+
+<div class="container" *ngIf="weatherData">
+  <div class="upper-data" >
+    <img src="../assets/img1.png" *ngIf="weatherData.forecasts[0].high > 5">
+    <img src="../assets/img2png.png" *ngIf="weatherData.forecasts[0].low < 10">
+
+    <div class="weather-data">
+      <div class="location"> {{weatherData.location.city}} </div>
+      <div class="temperature" >{{weatherData.forecasts[0].high | number: '1.0-0' }} °C </div>
+    </div>
+
+  </div>
+
+
+<div class="lower-data">
+  <div class="more-info-label">
+    Más Informacion
+  </div>
+  <div class="more-info-container">
+    <div class="info-block">
+      <div class="info-block-label">
+        <img src="../assets/min.png">
+        <span> min </span>
+      </div>
+      <div class="info-block-value">
+        {{weatherData.forecasts[0].low}} °C
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-block-label">
+        <img src="../assets/max.png">
+        <span>max</span>
+      </div>
+      <div class="info-block-value">
+        {{weatherData.forecasts[0].high}} °C
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-block-label">
+        <img src="../assets/humidity.png">
+        <span>humedad</span>
+      </div>
+      <div class="info-block-value">
+        {{weatherData.current_observation.atmosphere.humidity}} %
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-block-label">
+        <img src="../assets/wind.png">
+        <span>viento</span>
+      </div>
+      <div class="info-block-value">
+        {{weatherData.current_observation.wind.speed}} km
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+
+<router-outlet></router-outlet>
